@@ -17,6 +17,12 @@
     UIView *containerView;
     
     CGFloat startCenterX;
+    
+    CGPoint originalPoint;
+    
+    CGFloat delta;
+    
+    CGPoint velocity;
 }
 @end
 
@@ -47,10 +53,63 @@
         [view1 addSubview:button];
     }
     
-    [view1.layer addAnimation:[self rotationAnimation] forKey:@"haha"];
+    [view1.layer addAnimation:[self rotationAnimation] forKey:@"showAnimation"];
     view1.layer.speed = 0;
     
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [containerView addGestureRecognizer:panGesture];
+    
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)gesture
+{
+    NSLog(@"pan");
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        originalPoint = [gesture locationInView:self.view];
+        delta = 3./80;
+        velocity = [gesture velocityInView:self.view];
+        
+    }
+    
+    if (gesture.state == UIGestureRecognizerStateChanged) {
+        CGPoint translatePoint = [gesture translationInView:gesture.view];
+        if (gesture.view.frame.origin.x<-80||gesture.view.frame.origin.x>0) {
+            
+        }else
+        {
+            if (gesture.view.frame.origin.x>=0&&velocity.x>0) {
+                return;
+            }
+            gesture.view.center = CGPointMake(gesture.view.center.x+translatePoint.x, gesture.view.center.y);
+            CGPoint currentPoint = [gesture locationInView:self.view];
+            NSLog(@"currentpoint is %@",NSStringFromCGPoint(currentPoint));
+            CGFloat currentDelta = (currentPoint.x - originalPoint.x)*delta;
+            NSLog(@"current delta is %f",currentDelta);
+            if (currentDelta>0) {
+                view1.layer.timeOffset = currentDelta;
+            }else
+            {
+                view1.layer.timeOffset = (3+currentDelta);
+            }
+            
+        }
+        [gesture setTranslation:CGPointZero inView:gesture.view];
+    }
+    if (gesture.state == UIGestureRecognizerStateEnded||gesture.state == UIGestureRecognizerStateCancelled) {
+        if (CGRectGetMinX(gesture.view.frame)<-40) {
+            [UIView animateWithDuration:0.1 animations:^{
+                gesture.view.frame = CGRectMake(-80, 0, CGRectGetWidth(gesture.view.frame), CGRectGetHeight(gesture.view.frame));
+                view1.layer.timeOffset = 0;
+            }];
+        }else
+        {
+            [UIView animateWithDuration:0.1 animations:^{
+                gesture.view.frame = CGRectMake(0, 0, CGRectGetWidth(gesture.view.frame), CGRectGetHeight(gesture.view.frame));
+            }];
+            view1.layer.timeOffset = 3;
+        }
+    }
 }
 
 - (IBAction)changeValue:(UISlider *)sender
@@ -65,6 +124,7 @@
     rotation.duration = 3;
     rotation.fromValue = @(-M_PI_2);
     rotation.toValue = @(0);
+    rotation.removedOnCompletion = YES;
     return rotation;
 }
 

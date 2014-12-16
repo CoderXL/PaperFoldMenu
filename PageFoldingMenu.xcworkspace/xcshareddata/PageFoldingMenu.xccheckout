@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C6110B1E-55C6-4FF9-8D25-0EE1D179A2A2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PageFoldingMenu</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>73ED4F945C0B5ADC3459DBD66FBF0383D2F493F9</key>
+		<string>github.com:pingguo-zangqilong/PaperFoldMenu.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PageFoldingMenu.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>73ED4F945C0B5ADC3459DBD66FBF0383D2F493F9</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:pingguo-zangqilong/PaperFoldMenu.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>73ED4F945C0B5ADC3459DBD66FBF0383D2F493F9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>73ED4F945C0B5ADC3459DBD66FBF0383D2F493F9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PaperFoldMenu</string>
+		</dict>
+	</array>
+</dict>
+</plist>
